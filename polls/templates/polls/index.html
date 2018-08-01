@@ -5,11 +5,33 @@
 {% endblock %}
 
 {% block main_content %}
-        {% for question in questions %}
-            <li>
-                <a href = "/polls/{{ question.id }}">
-                    {{ question.question_text }}
-                </a>
-            </li>
-        {% endfor %}
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Question</th>
+              <th scope="col">Created Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for question in questions %}
+                <tr>
+                  <td scope="row">
+                       {{ question.id }}
+                  </td>
+                  <td>{{ question.question_text }}</td>
+                  <td>{{ question.created }}</td>
+                  <td>
+                      <a href = "/polls/{{ question.id }}">
+                            Vote
+                      </a>
+                  </td>
+                </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
 {% endblock %}
