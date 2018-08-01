@@ -1,0 +1,15 @@
+{% extends 'polls/template.html' %}
+
+{% block title_block %}
+    Questions List
+{% endblock %}
+
+{% block main_content %}
+        {% for question in questions %}
+            <li>
+                <a href = "/polls/{{ question.id }}">
+                    {{ question.question_text }}
+                </a>
+            </li>
+        {% endfor %}
+{% endblock %}

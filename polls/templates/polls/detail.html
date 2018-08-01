@@ -1,0 +1,22 @@
+{% extends 'polls/template.html' %}
+
+{% block title_block %}
+    {{ question.question_text }}
+{% endblock %}
+
+{% block main_content %}
+    <h1>{{ question.question_text }}</h1>
+
+     <form method="post" action="/polls/{{ question.id }}/vote">
+        {% csrf_token %}
+         {% for choice in question.choice_set.all %}
+                 <div class="form-check">
+                      <input type="radio" id="choice_radio" class="form-check-input" name="choice" value="{{ choice.id }}">
+                 <label for="choice_radio"> {{ choice.choice_text }} [VOTE = {{ choice.vote }}] </label>
+                 </div>
+         {% endfor %}
+
+        <input type="submit" value="Vote this answer">
+     </form>
+{% endblock %}
+
